@@ -1,0 +1,77 @@
+{% extends 'base1.html.twig' %}
+
+{% block title %}SymBook - Step Into a Magical Story{% endblock %}
+
+{% block body %}
+    <!-- Hero Section -->
+    <div class="hero-section py-5">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-md-6 text-center text-md-start">
+                    <h1 class="hero-title">Buy your favourite Book from Here</h1>
+                    <a href="{{ path('app_client') }}" class="btn btn-shop-now mt-3">
+                        Shop Now <i class="bi bi-arrow-right"></i>
+                    </a>
+                </div>
+                <div class="col-md-6 text-center">
+                    <img src="https://images.pexels.com/photos/159711/books-bookstore-book-reading-159711.jpeg?auto=compress&cs=tinysrgb&w=600" class="hero-image" alt="Person Reading Book">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- New Products Section -->
+    <section id="new-products" class="py-5">
+        <div class="container">
+            <h2 class="section-title text-center mb-4">New Products</h2>
+            <p class="text-center mb-5">Discover the latest additions to our collection, crafted to inspire and captivate.</p>
+            <div class="row row-cols-1 row-cols-md-4 g-4 justify-content-center">
+                <!-- Book 1 -->
+                <div class="col">
+                    <div class="card book-card h-100">
+                        <img src="https://images.unsplash.com/photo-1544947950-fa07a98d237f?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&h=450&q=80" class="card-img-top" alt="Book 1">
+                        <div class="card-body d-flex flex-column">
+                            <h5 class="card-title">Our World</h5>
+                            <a href="#" class="btn btn-primary mt-auto">View Details</a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Book 2 -->
+                <div class="col">
+                    <div class="card book-card h-100">
+                        <img src="https://images.unsplash.com/photo-1589829085413-56de8ae18c73?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&h=450&q=80" class="card-img-top" alt="Book 2">
+                        <div class="card-body d-flex flex-column">
+                            <h5 class="card-title">Animal Tales</h5>
+                            <a href="#" class="btn btn-primary mt-auto">View Details</a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Book 3 -->
+                <div class="col">
+                    <div class="card book-card h-100">
+                        <img src="https://m.media-amazon.com/images/I/61M6KzUbf7L._AC_UF1000,1000_QL80_.jpg?fit=crop&w=300&h=450" class="card-img-top" alt="Book 3">
+                        <div class="card-body d-flex flex-column">
+                            <h5 class="card-title">Atomic Habits</h5>
+                            <a href="#" class="btn btn-primary mt-auto">View Details</a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Book 4 -->
+                <div class="col">
+                    <div class="card book-card h-100">
+                        <img src="https://d28hgpri8am2if.cloudfront.net/book_images/onix/cvr9781760859886/code-name-helene-9781760859886_hr.jpg?fit=crop&w=300&h=450" class="card-img-top" alt="Book 4">
+                        <div class="card-body d-flex flex-column">
+                            <h5 class="card-title">Code Name Hélène</h5>
+                            <a href="#" class="btn btn-primary mt-auto">View Details</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="text-center py-4">
+        <p>© {{ 'now'|date('Y') }} SymBook. All rights reserved.</p>
+    </footer>
+{% endblock %}

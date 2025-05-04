@@ -1,0 +1,92 @@
+/* Custom SymBook Styles */
+body {
+    font-family: 'Playfair Display', serif;
+    background: linear-gradient(135deg, #f8f1e9 0%, #d5c6a6 100%);
+    color: #2c3e50;
+    position: relative;
+    overflow-x: hidden;
+}
+
+.navbar {
+    background-color: #fff;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    padding: 1rem 0;
+}
+
+.navbar-brand, .nav-link {
+    color: #00CED1 !important; /* Bright teal for clear visibility */
+    font-family: 'Cinzel', serif;
+    transition: color 0.3s;
+}
+
+.navbar-brand:hover, .nav-link:hover {
+    color: #FF4040 !important; /* Vivid coral for a clear hover effect */
+}
+
+.floating-book {
+    position: fixed;
+    width: 50px;
+    height: 50px;
+    opacity: 0.7;
+    animation: float 8s ease-in-out infinite;
+}
+
+@keyframes float {
+    0% { transform: translateY(0); }
+    50% { transform: translateY(-20px); }
+    100% { transform: translateY(0); }
+}
+
+.card {
+    border: none;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.card-img-top {
+    object-fit: cover;
+    height: 200px;
+}
+
+.card-img-placeholder {
+    height: 200px;
+    background-color: #e9ecef;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #6c757d;
+    font-style: italic;
+}
+
+.btn-primary, .btn-success {
+    transition: background-color 0.3s;
+}
+
+.btn-primary:hover, .btn-success:hover {
+    opacity: 0.9;
+}
+
+.alert {
+    border-radius: 8px;
+    margin-bottom: 1.5rem;
+}
+
+h1.display-4 {
+    font-family: 'Cinzel', serif;
+    color: #2c3e50;
+}
+
+.text-muted {
+    font-style: italic;
+}
+
+.container.my-5 {
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 15px;
+    padding: 2rem;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.05);
+}
