@@ -1,4 +1,4 @@
-/* Reset default styles and set global box-sizing */
+/* Reset and Base Styles */
 * {
     margin: 0;
     padding: 0;
@@ -6,243 +6,92 @@
 }
 
 body {
-    font-family: 'Playfair Display', serif;
-    background-color: #f5f5dc; /* Soft beige for a warm, paper-like feel */
-    color: #333;
+    font-family: 'Poppins', sans-serif;
+    background-color: #f8fafc;
+    color: #1f2937;
     line-height: 1.6;
 }
 
 /* Navigation Bar */
 .navbar {
-    background-color: #fff;
-    padding: 1rem 0;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease;
+}
+
+.navbar.sticky {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
 }
 
 .navbar-brand {
-    font-family: 'Cinzel', serif;
-    font-size: 1.5rem;
-    color: #eded78 !important;
+    font-family: 'Merriweather', serif;
+    font-size: 1.75rem;
+    color: #14b8a6 !important;
     font-weight: 700;
 }
 
 .nav-link {
-    color: #6b7280;
+    color: #4b5563 !important;
     font-size: 1rem;
-    margin: 0 0.5rem;
+    margin: 0 0.75rem;
     transition: color 0.3s ease;
+    display: flex;
+    align-items: center;
 }
 
 .nav-link:hover {
-    color: #006d5b;
+    color: #14b8a6 !important;
 }
 
 .nav-link i {
-    font-size: 1.2rem;
-    color: #6b7280;
+    font-size: 1.25rem;
+    margin-right: 0.25rem;
 }
 
-.nav-link i:hover {
-    color: #006d5b;
-}
-
-/* Hero Section */
-.hero-section {
-    background-color: #f0f0f0;
-    padding: 4rem 0;
-}
-
-.hero-title {
-    font-family: 'Cinzel', serif;
-    font-size: 3.5rem;
-    color: #1f2937;
-    margin-bottom: 2rem;
-}
-
-.hero-image {
-    width: 100%;
-    max-width: 500px;
-    height: 400px;
-    object-fit: cover;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-.btn-shop-now {
-    background-color: #006d5b;
-    color: #fff;
-    font-size: 1.2rem;
-    padding: 0.75rem 1.5rem;
-    border: none;
-    border-radius: 5px;
-    display: inline-flex;
+.navbar-nav {
     align-items: center;
-    gap: 0.5rem;
-    transition: background-color 0.3s ease;
 }
 
-.btn-shop-now:hover {
-    background-color: #004d40;
-}
-
-/* Floating Books Animation */
-.floating-book {
-    position: absolute;
-    animation: float 6s infinite ease-in-out;
-    z-index: 10;
-}
-
-@keyframes float {
-    0% { transform: translateY(0); }
-    50% { transform: translateY(-20px); }
-    100% { transform: translateY(0); }
-}
-
-/* New Products Section */
-#new-products {
-    padding: 4rem 0;
+.navbar-collapse {
     background-color: #fff;
-    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.05);
 }
 
-.section-title {
-    font-family: 'Cinzel', serif;
-    font-size: 2.5rem;
-    color: #006d5b;
-    margin-bottom: 1rem;
-}
-
-#new-products p.text-center {
-    font-size: 1.1rem;
-    color: #6b7280;
-    max-width: 700px;
-    margin: 0 auto 2rem;
-}
-
-.book-card {
-    border: none;
-    border-radius: 10px;
-    overflow: hidden;
-    width: 100%;
-    background-color: #f9f9f9;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease;
-}
-
-.book-card:hover {
-    transform: translateY(-5px);
-}
-
-.book-card img {
-    width: 100%;
-    height: 300px;
-    object-fit: cover;
-}
-
-.book-card .card-body {
-    padding: 1.5rem;
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-}
-
-.book-card .card-title {
-    font-size: 1.2rem;
-    color: #1f2937;
-    margin-bottom: 1rem;
-    flex-grow: 1;
-}
-
-.btn-primary {
-    background-color: #006d5b;
-    border: none;
-    font-size: 1rem;
-    padding: 0.6rem 1.2rem;
-    transition: background-color 0.3s ease;
-    border-radius: 5px;
-}
-
-.btn-primary:hover {
-    background-color: #004d40;
-}
-
-.mt-auto {
-    margin-top: auto;
-}
-
-/* Footer */
-footer {
-    background-color: #fff;
-    color: #6b7280;
-    padding: 2rem 0;
-}
-
-footer p {
-    font-size: 0.9rem;
-}
-
-/* Responsive Design */
-@media (max-width: 992px) {
-    .hero-title {
-        font-size: 2.5rem;
+@media (max-width: 991px) {
+    .navbar-collapse {
+        padding: 1rem;
+        background-color: #fff;
+        border-radius: 0.5rem;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     }
 
-    .hero-image {
-        margin-top: 2rem;
-        max-width: 400px;
-        height: 300px;
-    }
-
-    .col {
-        flex: 0 0 50%;
-        max-width: 50%;
-    }
-}
-
-@media (max-width: 768px) {
-    .hero-title {
-        font-size: 2rem;
-    }
-
-    .section-title {
-        font-size: 2rem;
-    }
-
-    .book-card img {
-        height: 250px;
-    }
-
-    .hero-image {
-        max-width: 350px;
-        height: 250px;
-    }
-
-    .col {
-        flex: 0 0 100%;
-        max-width: 100%;
-    }
-}
-
-@media (max-width: 576px) {
-    .navbar-brand {
-        font-size: 1.2rem;
+    .navbar-nav {
+        flex-direction: column;
+        align-items: flex-start;
     }
 
     .nav-link {
-        font-size: 0.9rem;
+        margin: 0.5rem 0;
+        font-size: 1.1rem;
+    }
+}
+
+/* Ensure Bootstrap Toggler is Visible */
+.navbar-toggler {
+    border: none;
+    padding: 0.5rem;
+}
+
+.navbar-toggler-icon {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(20, 184, 166, 0.75)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e") !important;
+}
+
+/* Responsive Design */
+@media (max-width: 576px) {
+    .navbar-brand {
+        font-size: 1.25rem;
     }
 
-    .floating-book {
-        display: none;
+    .nav-link {
+        font-size: 0.875rem;
     }
-
-    .book-card {
-        max-width: 100%;
-    }
-
-    .hero-image {
-        max-width: 300px;
-        height: 200px;
-    }
-    
 }

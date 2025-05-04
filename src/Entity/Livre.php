@@ -37,12 +37,7 @@ class Livre
     private ?\DateTimeInterface $dateEdition = null;
 
     #[ORM\Column]
-    #[Assert\Range(
-        min: 0,
-        max: 1000,
-        minMessage: "prix doit etre >0 DT",
-        maxMessage: "prix doit etre <1000 DT"
-    )]
+    
     private ?float $prix = null;
 
     #[ORM\ManyToOne(inversedBy: 'livres')]

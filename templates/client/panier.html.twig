@@ -1,82 +1,75 @@
 {% extends 'base3.html.twig' %}
 
-{% block title %}Panier - BookHaven
-{% endblock %}
+{% block title %}Panier - BookHaven{% endblock %}
 
 {% block body %}
-	<div class="container my-5">
-		<h1>Votre Panier</h1>
+    <div class="container my-5">
+        <h1 class="display-4 fw-bold font-merriweather text-teal-600">Votre Panier</h1>
 
-		{% for message in app.flashes('success') %}
-			<div class="alert alert-success alert-dismissible fade show" role="alert">
-				{{ message }}
-				<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-			</div>
-		{% endfor %}
-		{% for message in app.flashes('error') %}
-			<div class="alert alert-danger alert-dismissible fade show" role="alert">
-				{{ message }}
-				<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-			</div>
-		{% endfor %}
+        {% for message in app.flashes('success') %}
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                {{ message }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        {% endfor %}
+        {% for message in app.flashes('error') %}
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                {{ message }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        {% endfor %}
 
-		{% if livres is empty %}
-			<p>Votre panier est vide.</p>
-		{% else %}
-			<table class="table table-striped">
-				<thead>
-					<tr>
-						<th>Titre</th>
-						<th>Prix Unitaire</th>
-						<th>Quantité</th>
-						<th>Sous-total</th>
-						<th>Actions</th>
-					</tr>
-				</thead>
-				<tbody>
-					{% for item in livres %}
-						<tr>
-							<td>{{ item.livre.titre }}</td>
-							<td>{{ item.livre.prix|number_format(2) }}
-								DT</td>
-							<td>
-								<form method="post" action="{{ path('app_client_panier') }}" class="d-inline">
-									<input type="hidden" name="livreId" value="{{ item.livre.id }}">
-									<input type="hidden" name="action" value="update">
-									<input type="number" name="quantite" value="{{ item.quantite }}" min="1" max="{{ item.livre.stock }}" class="form-control d-inline-block w-auto">
-									<input type="hidden" name="_token" value="{{ csrf_token('panier_action' ~ item.livre.id) }}">
-									<button type="submit" class="btn btn-sm btn-primary">Mettre à jour</button>
-								</form>
-							</td>
-							<td>{{ item.total|number_format(2) }}
-								DT</td>
-							<td>
-								<form method="post" action="{{ path('app_client_panier') }}" class="d-inline">
-									<input type="hidden" name="livreId" value="{{ item.livre.id }}">
-									<input type="hidden" name="action" value="remove">
-									<input type="hidden" name="_token" value="{{ csrf_token('panier_action' ~ item.livre.id) }}">
-									<button type="submit" class="btn btn-sm btn-danger">Supprimer</button>
-								</form>
-							</td>
-						</tr>
-					{% endfor %}
-				</tbody>
-				<tfoot>
-					<tr>
-						<td colspan="3">
-							<strong>Total</strong>
-						</td>
-						<td>
-							<strong>{{ total|number_format(2) }}
-								DT</strong>
-						</td>
-						<td></td>
-					</tr>
-				</tfoot>
-			</table>
-			
-		{% endif %}
-		<a href="{{ path('app_client_checkout') }}" class="btn btn-success">Passer la commande</a>
-		<a href="{{ path('app_client') }}" class="btn btn-secondary mt-3">Retour à la liste</a>
-	</div>
+        {% if livres is empty %}
+            <p class="text-muted font-poppins fs-5">Votre panier est vide.</p>
+        {% else %}
+            <table class="table table-striped table-hover">
+                <thead>
+                    <tr>
+                        <th scope="col" class="font-merriweather">Titre</th>
+                        <th scope="col" class="font-merriweather">Prix Unitaire</th>
+                        <th scope="col" class="font-merriweather">Quantité</th>
+                        <th scope="col" class="font-merriweather">Sous-total</th>
+                        <th scope="col" class="font-merriweather">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for item in livres %}
+                        <tr>
+                            <td class="font-poppins">{{ item.livre.titre }}</td>
+                            <td class="font-poppins">{{ item.livre.prix|number_format(2) }} DT</td>
+                            <td>
+                                <form method="post" action="{{ path('app_client_panier') }}" class="d-inline">
+                                    <input type="hidden" name="livreId" value="{{ item.livre.id }}">
+                                    <input type="hidden" name="action" value="update">
+                                    <input type="number" name="quantite" value="{{ item.quantite }}" min="1" max="{{ item.livre.stock }}" class="form-control d-inline-block w-auto">
+                                    <input type="hidden" name="_token" value="{{ csrf_token('panier_action' ~ item.livre.id) }}">
+                                    <button type="submit" class="btn btn-primary btn-sm px-3 py-2 rounded-pill fw-semibold">Mettre à jour</button>
+                                </form>
+                            </td>
+                            <td class="font-poppins">{{ item.total|number_format(2) }} DT</td>
+                            <td>
+                                <form method="post" action="{{ path('app_client_panier') }}" class="d-inline">
+                                    <input type="hidden" name="livreId" value="{{ item.livre.id }}">
+                                    <input type="hidden" name="action" value="remove">
+                                    <input type="hidden" name="_token" value="{{ csrf_token('panier_action' ~ item.livre.id) }}">
+                                    <button type="submit" class="btn btn-danger btn-sm px-3 py-2 rounded-pill fw-semibold">Supprimer</button>
+                                </form>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td colspan="3" class="font-merriweather"><strong>Total</strong></td>
+                        <td class="font-merriweather"><strong>{{ total|number_format(2) }} DT</strong></td>
+                        <td></td>
+                    </tr>
+                </tfoot>
+            </table>
+            <div class="d-flex gap-3">
+                <a href="{{ path('app_client_checkout') }}" class="btn btn-success px-4 py-2 rounded-pill fw-semibold">Passer la commande</a>
+                <a href="{{ path('app_client') }}" class="btn btn-secondary px-4 py-2 rounded-pill fw-semibold">Retour à la liste</a>
+            </div>
+        {% endif %}
+    </div>
 {% endblock %}

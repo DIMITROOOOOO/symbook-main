@@ -1,51 +1,59 @@
 {% extends 'base3.html.twig' %}
 
-{% block title %}Mes Commandes - BookHaven
-{% endblock %}
+{% block title %}Mes Commandes - BookHaven{% endblock %}
 
 {% block body %}
-	<div class="container my-5">
-		<h1>Mes Commandes</h1>
+    <div class="container my-5">
+        <h1 class="display-4 fw-bold font-merriweather text-teal-600">Mes Commandes</h1>
 
-		{% if commandes is empty %}
-			<p>Vous n'avez aucune commande.</p>
-		{% else %}
-			<table class="table table-striped">
-				<thead>
-					<tr>
-						<th>Numéro de commande</th>
-						<th>Date</th>
-						<th>Quantité totale</th>
-						<th>Total</th>
-						<th>Statut</th>
-						<th>Articles</th>
-					</tr>
-				</thead>
-				<tbody>
-					{% for commande in commandes %}
-						<tr>
-							<td>{{ commande.numeroCommande }}</td>
-							<td>{{ commande.dateCommande|date('d/m/Y H:i') }}</td>
-							<td>{{ commande.quantiteTotal }}</td>
-							<td>{{ commande.total|number_format(2) }}
-								DT</td>
-							<td>{{ commande.statut }}</td>
-							<td>
-								<ul>
-									{% for item in commande.items %}
-										<li>Livre ID:
-											{{ item.livre_id }}
-											(Quantité:
-											{{ item.quantite }})</li>
-									{% endfor %}
-								</ul>
-							</td>
-						</tr>
-					{% endfor %}
-				</tbody>
-			</table>
-		{% endif %}
+        {% for message in app.flashes('success') %}
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                {{ message }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        {% endfor %}
+        {% for message in app.flashes('error') %}
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                {{ message }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        {% endfor %}
 
-		<a href="{{ path('app_client') }}" class="btn btn-secondary">Retour à la boutique</a>
-	</div>
+        {% if commandes is empty %}
+            <p class="text-muted font-poppins fs-5">Vous n'avez aucune commande.</p>
+        {% else %}
+            <table class="table table-striped table-hover">
+                <thead>
+                    <tr>
+                        <th scope="col" class="font-merriweather">Numéro de commande</th>
+                        <th scope="col" class="font-merriweather">Date</th>
+                        <th scope="col" class="font-merriweather">Quantité totale</th>
+                        <th scope="col" class="font-merriweather">Total</th>
+                        <th scope="col" class="font-merriweather">Statut</th>
+                        <th scope="col" class="font-merriweather">Articles</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for commande in commandes %}
+                        <tr>
+                            <td class="font-poppins">{{ commande.numeroCommande }}</td>
+                            <td class="font-poppins">{{ commande.dateCommande|date('d/m/Y H:i') }}</td>
+                            <td class="font-poppins">{{ commande.quantiteTotal }}</td>
+                            <td class="font-poppins">{{ commande.total|number_format(2) }} DT</td>
+                            <td class="font-poppins">{{ commande.statut }}</td>
+                            <td class="font-poppins">
+                                <ul class="list-unstyled mb-0">
+                                    {% for item in commande.items %}
+                                        <li>Livre ID: {{ item.livre_id }} (Quantité: {{ item.quantite }})</li>
+                                    {% endfor %}
+                                </ul>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        {% endif %}
+
+        <a href="{{ path('app_client') }}" class="btn btn-secondary px-4 py-2 rounded-pill fw-semibold">Retour à la boutique</a>
+    </div>
 {% endblock %}

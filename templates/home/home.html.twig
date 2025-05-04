@@ -1,68 +1,117 @@
 {% extends 'base1.html.twig' %}
 
-{% block title %}SymBook - Step Into a Magical Story{% endblock %}
+{% block title %}BookHaven - Step Into a Magical Story{% endblock %}
 
 {% block body %}
-    <!-- Hero Section -->
-    <div class="hero-section py-5">
-        <div class="container">
+    <!-- Flash Messages -->
+    {% for message in app.flashes('success') %}
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            {{ message }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    {% endfor %}
+    {% for message in app.flashes('error') %}
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            {{ message }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    {% endfor %}
+
+    <!-- Hero Section with Parallax -->
+    <div class="hero-section position-relative overflow-hidden py-5 text-white">
+        <div class="parallax-bg position-absolute top-0 start-0 w-100 h-100 bg-cover bg-center opacity-25" style="background-image: url('https://images.pexels.com/photos/159711/books-bookstore-book-reading-159711.jpeg?auto=compress&cs=tinysrgb&w=600');"></div>
+        <div class="container position-relative z-10">
             <div class="row align-items-center">
                 <div class="col-md-6 text-center text-md-start">
-                    <h1 class="hero-title">Buy your favourite Book from Here</h1>
-                    <a href="{{ path('app_client') }}" class="btn btn-shop-now mt-3">
-                        Shop Now <i class="bi bi-arrow-right"></i>
-                    </a>
+                    <h1 class="hero-title display-4 fw-bold font-merriweather mb-4 animate-fade-in">Buy Your Favorite Book Here</h1>
+                    <a href="{{ path('app_client') }}" class="btn btn-shop-now btn-lg mt-3 px-4 py-2 bg-white text-teal-600 rounded-pill fw-semibold">Shop Now <i class="bi bi-arrow-right ms-2"></i></a>
                 </div>
-                <div class="col-md-6 text-center">
-                    <img src="https://images.pexels.com/photos/159711/books-bookstore-book-reading-159711.jpeg?auto=compress&cs=tinysrgb&w=600" class="hero-image" alt="Person Reading Book">
+                <div class="col-md-6 text-center mt-4 mt-md-0">
+                    <img src="https://images.pexels.com/photos/159711/books-bookstore-book-reading-159711.jpeg?auto=compress&cs=tinysrgb&w=600" class="hero-image img-fluid rounded shadow-lg" alt="Person Reading Book">
                 </div>
             </div>
         </div>
     </div>
 
     <!-- New Products Section -->
-    <section id="new-products" class="py-5">
+    <section id="new-products" class="py-5 bg-light">
         <div class="container">
-            <h2 class="section-title text-center mb-4">New Products</h2>
-            <p class="text-center mb-5">Discover the latest additions to our collection, crafted to inspire and captivate.</p>
+            <h2 class="section-title text-center display-5 fw-bold font-merriweather text-teal-600 mb-4">New Products</h2>
+            <p class="text-center mb-5 text-muted fs-5 font-poppins">Discover the latest additions to our collection, crafted to inspire and captivate.</p>
             <div class="row row-cols-1 row-cols-md-4 g-4 justify-content-center">
                 <!-- Book 1 -->
                 <div class="col">
-                    <div class="card book-card h-100">
-                        <img src="https://images.unsplash.com/photo-1544947950-fa07a98d237f?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&h=450&q=80" class="card-img-top" alt="Book 1">
-                        <div class="card-body d-flex flex-column">
-                            <h5 class="card-title">Our World</h5>
-                            <a href="#" class="btn btn-primary mt-auto">View Details</a>
+                    <div class="book-card position-relative">
+                        <div class="card-inner">
+                            <div class="card-front bg-white rounded shadow">
+                                <img src="https://images.unsplash.com/photo-1544947950-fa07a98d237f?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&h=450&q=80" class="card-img-top rounded-top" alt="Book 1">
+                                <div class="card-body d-flex flex-column p-3">
+                                    <h5 class="card-title fs-5 font-merriweather text-dark">Our World</h5>
+                                    <a href="{{ path('app_client') }}" class="btn btn-primary mt-auto px-3 py-2 bg-teal-600 text-white rounded-pill fw-semibold">View Details</a>
+                                </div>
+                            </div>
+                            <div class="card-back bg-teal-600 text-white rounded shadow d-flex flex-column align-items-center justify-content-center p-3">
+                                <h5 class="fs-5 font-merriweather">Our World</h5>
+                                <p class="text-sm text-center font-poppins">A journey through diverse cultures and landscapes.</p>
+                                <a href="{{ path('app_client') }}" class="mt-3 px-3 py-2 bg-white text-teal-600 rounded-pill fw-semibold">Learn More</a>
+                            </div>
                         </div>
                     </div>
                 </div>
                 <!-- Book 2 -->
                 <div class="col">
-                    <div class="card book-card h-100">
-                        <img src="https://images.unsplash.com/photo-1589829085413-56de8ae18c73?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&h=450&q=80" class="card-img-top" alt="Book 2">
-                        <div class="card-body d-flex flex-column">
-                            <h5 class="card-title">Animal Tales</h5>
-                            <a href="#" class="btn btn-primary mt-auto">View Details</a>
+                    <div class="book-card position-relative">
+                        <div class="card-inner">
+                            <div class="card-front bg-white rounded shadow">
+                                <img src="https://images.unsplash.com/photo-1589829085413-56de8ae18c73?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&h=450&q=80" class="card-img-top rounded-top" alt="Book 2">
+                                <div class="card-body d-flex flex-column p-3">
+                                    <h5 class="card-title fs-5 font-merriweather text-dark">Animal Tales</h5>
+                                    <a href="{{ path('app_client') }}" class="btn btn-primary mt-auto px-3 py-2 bg-teal-600 text-white rounded-pill fw-semibold">View Details</a>
+                                </div>
+                            </div>
+                            <div class="card-back bg-teal-600 text-white rounded shadow d-flex flex-column align-items-center justify-content-center p-3">
+                                <h5 class="fs-5 font-merriweather">Animal Tales</h5>
+                                <p class="text-sm text-center font-poppins">Heartwarming stories of animals and their adventures.</p>
+                                <a href="{{ path('app_client') }}" class="mt-3 px-3 py-2 bg-white text-teal-600 rounded-pill fw-semibold">Learn More</a>
+                            </div>
                         </div>
                     </div>
                 </div>
                 <!-- Book 3 -->
                 <div class="col">
-                    <div class="card book-card h-100">
-                        <img src="https://m.media-amazon.com/images/I/61M6KzUbf7L._AC_UF1000,1000_QL80_.jpg?fit=crop&w=300&h=450" class="card-img-top" alt="Book 3">
-                        <div class="card-body d-flex flex-column">
-                            <h5 class="card-title">Atomic Habits</h5>
-                            <a href="#" class="btn btn-primary mt-auto">View Details</a>
+                    <div class="book-card position-relative">
+                        <div class="card-inner">
+                            <div class="card-front bg-white rounded shadow">
+                                <img src="https://m.media-amazon.com/images/I/61M6KzUbf7L._AC_UF1000,1000_QL80_.jpg?fit=crop&w=300&h=450" class="card-img-top rounded-top" alt="Book 3">
+                                <div class="card-body d-flex flex-column p-3">
+                                    <h5 class="card-title fs-5 font-merriweather text-dark">Atomic Habits</h5>
+                                    <a href="{{ path('app_client') }}" class="btn btn-primary mt-auto px-3 py-2 bg-teal-600 text-white rounded-pill fw-semibold">View Details</a>
+                                </div>
+                            </div>
+                            <div class="card-back bg-teal-600 text-white rounded shadow d-flex flex-column align-items-center justify-content-center p-3">
+                                <h5 class="fs-5 font-merriweather">Atomic Habits</h5>
+                                <p class="text-sm text-center font-poppins">Transform your life with small, impactful changes.</p>
+                                <a href="{{ path('app_client') }}" class="mt-3 px-3 py-2 bg-white text-teal-600 rounded-pill fw-semibold">Learn More</a>
+                            </div>
                         </div>
                     </div>
                 </div>
                 <!-- Book 4 -->
                 <div class="col">
-                    <div class="card book-card h-100">
-                        <img src="https://d28hgpri8am2if.cloudfront.net/book_images/onix/cvr9781760859886/code-name-helene-9781760859886_hr.jpg?fit=crop&w=300&h=450" class="card-img-top" alt="Book 4">
-                        <div class="card-body d-flex flex-column">
-                            <h5 class="card-title">Code Name Hélène</h5>
-                            <a href="#" class="btn btn-primary mt-auto">View Details</a>
+                    <div class="book-card position-relative">
+                        <div class="card-inner">
+                            <div class="card-front bg-white rounded shadow">
+                                <img src="https://d28hgpri8am2if.cloudfront.net/book_images/onix/cvr9781760859886/code-name-helene-9781760859886_hr.jpg?fit=crop&w=300&h=450" class="card-img-top rounded-top" alt="Book 4">
+                                <div class="card-body d-flex flex-column p-3">
+                                    <h5 class="card-title fs-5 font-merriweather text-dark">Code Name Hélène</h5>
+                                    <a href="{{ path('app_client') }}" class="btn btn-primary mt-auto px-3 py-2 bg-teal-600 text-white rounded-pill fw-semibold">View Details</a>
+                                </div>
+                            </div>
+                            <div class="card-back bg-teal-600 text-white rounded shadow d-flex flex-column align-items-center justify-content-center p-3">
+                                <h5 class="fs-5 font-merriweather">Code Name Hélène</h5>
+                                <p class="text-sm text-center font-poppins">A thrilling tale of courage and espionage.</p>
+                                <a href="{{ path('app_client') }}" class="mt-3 px-3 py-2 bg-white text-teal-600 rounded-pill fw-semibold">Learn More</a>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -70,8 +119,16 @@
         </div>
     </section>
 
-    <!-- Footer -->
-    <footer class="text-center py-4">
-        <p>© {{ 'now'|date('Y') }} SymBook. All rights reserved.</p>
+    <!-- Footer with Wave Animation -->
+    <footer class="position-relative bg-teal-600 text-white py-5 overflow-hidden">
+        <div class="wave position-absolute bottom-0 start-0 w-100 h-100 bg-wave"></div>
+        <div class="container position-relative z-10 text-center">
+            <p class="fs-6 mb-3">© {{ 'now'|date('Y') }} BookHaven. All rights reserved.</p>
+            <div class="d-flex justify-content-center gap-3">
+                <a href="#" class="text-white hover-text-coral-400"><i class="bi bi-facebook fs-4"></i></a>
+                <a href="#" class="text-white hover-text-coral-400"><i class="bi bi-twitter fs-4"></i></a>
+                <a href="#" class="text-white hover-text-coral-400"><i class="bi bi-instagram fs-4"></i></a>
+            </div>
+        </div>
     </footer>
 {% endblock %}
